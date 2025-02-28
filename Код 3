@@ -1,0 +1,31 @@
+def delete_selected_playlist(update: Update, _: CallbackContext) -> None:
+    query = update.callback_query
+    playlist_name = query.data
+    query.answer()
+    del playlists[playlist_name]
+    query.message.reply_text(f"Плейлист '{playlist_name}' был удалён.")
+    return start(update, _)
+
+def view_playlists(update: Update, _: CallbackContext) -> int:
+    if playlists:
+        keyboard = [[InlineKeyboardButton(name, callback_data=name) for name in playlists.keys()]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        update.message.reply_text("Выберите плейлист для просмотра:", reply_markup=reply_markup)
+    else:
+        update.message.reply_text("У вас нет созданных плейлистов.")
+    return start(update, _)
+
+def send_playlist_songs(update: Update, _: CallbackContext) -> None:
+    playlist_name = update.callback_query.data
+    query = update.callback_query
+    query.answer()
+    if playlists[playlist_name]:
+        for audio_id in playlists[playlist_name]:
+            query.message.reply_audio(audio_id)
+    else:
+        query.message.reply_text(f"Плейлист '{playlist_name}' пуст.")
+    return start(update, _)
+
+def main() -> None:
+    # Вставьте сюда ваш токен
+    updater = Updater("YOUR_API_TOKEN")
