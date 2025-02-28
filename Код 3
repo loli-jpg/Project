@@ -26,6 +26,3 @@ def send_playlist_songs(update: Update, _: CallbackContext) -> None:
         query.message.reply_text(f"Плейлист '{playlist_name}' пуст.")
     return start(update, _)
 
-def main() -> None:
-    # Вставьте сюда ваш токен
-    updater = Updater("YOUR_API_TOKEN")
