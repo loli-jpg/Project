@@ -1,0 +1,29 @@
+def start(update: Update, _: CallbackContext) -> int:
+    update.message.reply_text(
+        "Привет, я плейлист-бот! Выбери действие:\n"
+        "1) Создать плейлист\n"
+        "2) Редактировать плейлист\n"
+        "3) Удалить плейлист\n"
+        "4) Посмотреть плейлисты"
+    )
+    return CREATE_PLAYLIST
+
+def create_playlist(update: Update, _: CallbackContext) -> int:
+    update.message.reply_text("Введите название плейлиста:")
+    return EDIT_PLAYLIST
+
+def add_playlist(update: Update, _: CallbackContext) -> int:
+    playlist_name = update.message.text
+    playlists[playlist_name] = []
+    update.message.reply_text(f"Плейлист '{playlist_name}' создан.")
+    return start(update, _)
+
+def edit_playlist(update: Update, _: CallbackContext) -> int:
+    if playlists:
+        keyboard = [[InlineKeyboardButton(name, callback_data=name) for name in playlists.keys()]]
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        update.message.reply_text("Выберите плейлист для редактирования:", reply_markup=reply_markup)
+
+    else:
+        update.message.reply_text("У вас нет плейлистов. Пожалуйста, создайте один.")
+    return DELETE_PLAYLIST
