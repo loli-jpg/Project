@@ -27,3 +27,32 @@ def edit_playlist(update: Update, _: CallbackContext) -> int:
     else:
         update.message.reply_text("У вас нет плейлистов. Пожалуйста, создайте один.")
     return DELETE_PLAYLIST
+def button(update: Update, _: CallbackContext):
+    query = update.callback_query
+    playlist_name = query.data
+    query.answer()
+    query.message.reply_text(f"Вы выбрали плейлист '{playlist_name}'. Отправьте одну или несколько песен для добавления:")
+    return ADD_SONGS
+
+def add_songs(update: Update, _: CallbackContext) -> int:
+    playlist_name = None
+    for name in playlists.keys():
+        if name in update.message.text:
+            playlist_name = name
+    
+    if playlist_name:
+        if update.message.audio:
+            playlists[playlist_name].append(update.message.audio.file_id)
+            update.message.reply_text("Песня добавлена в плейлист.")
+        else:
+            update.message.reply_text("Пожалуйста, отправьте аудио файл.")
+    else:
+        update.message.reply_text("Такого плейлиста не существует, проверьте название.")
+    
+    return start(update, _)
+
+def delete_playlist(update: Update, _: CallbackContext) -> int:
+    keyboard = [[InlineKeyboardButton(name, callback_data=name) for name in playlists.keys()]]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text("Выберите плейлист для удаления:", reply_markup=reply_markup)
+    return VIEW_PLAYLIST
