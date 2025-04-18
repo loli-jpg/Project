@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: Project
+Version: 0.1.0
+Summary: Телеграмм-бот для создания плейлиста
+Home-page: https://github.com/loli-jpg/Project.git
+Author: Лоли
+Author-email: loligazd@mail.ru
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: asgiref==3.8.1
+Requires-Dist: Django==5.1.7
+Requires-Dist: django-ckeditor==6.7.2
+Requires-Dist: django-js-asset==3.1.2
+Requires-Dist: django-simple-history==3.8.0
+Requires-Dist: django-tinymce==4.1.0
+Requires-Dist: dotenv==0.9.9
+Requires-Dist: pillow==11.1.0
+Requires-Dist: python-dotenv==1.1.0
+Requires-Dist: sqlparse==0.5.3
+Requires-Dist: tzdata==2025.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+![image](https://github.com/user-attachments/assets/1f6352c5-dbec-4b66-9dc1-63982442e50e)
+
+## Описание бота
+Telegram Playlist Bot — это бот для создания и управления музыкальными плейлистами.
+## Функциональные возможности
+- Создание плейлистов, добавление в них треков.
+- Удаление треков из плейлистов.
+- Просмотр списка своих плейлистов и треков в них.
+- Поиск музыки по названию или исполнителю.
+- Импорт музыки из яндекс музыки.
+
+## Зависимости
+Проект написан на phyton, для его запуска нужно установить следующие библиотеки:
+
+```python-telegram-bot==20.3```
+```yandex-music==2.1.1```
+```sqlalchemy==2.0.23```
+```python-dotenv==1.0.0```
+## Установка и запуск
+1. Клонируйте репозиторий:
+   ```git clone git@github.com:loli-jpg/Project.git```
+   
+3. Установите необходимые зависимости
+4. Запустите бота
+   ```phython bot.py```
+
+## Наша команда:
+- **Газдиева Лоли** [loli_jpg](https://github.com/loli-jpg)
+- **Ильина Ксения** [Kseniya-10](https://github.com/Kseniya-10)
+- **Сапенкова Анастасия** [Nastya318](https://github.com/Nastya318)
